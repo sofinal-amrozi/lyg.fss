@@ -13,9 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FactorySmartSystem">
-        <activity android:name=".ZxingScanner"></activity>
-        <activity android:name=".BarcodeScanner" />
-        <activity android:name=".MainMenu" />
+        <activity
+            android:name=".ZxingScanner"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".BarcodeScanner"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".MainMenu"/>
         <activity android:name=".Login" />
         <activity
             android:name=".SplashScreen"

@@ -196,9 +196,9 @@ public class BarcodeScanner extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //jika kalian menekan tombol ya, maka otomatis akan keluar dari activity saat ini
-                        onDestroy();
+                        Intent intentmenu = new Intent(BarcodeScanner.this, MainMenu.class);
+                        startActivity(intentmenu);
                         finish();
-                        System.exit(0);
 
                     }
                 });
@@ -219,6 +219,7 @@ public class BarcodeScanner extends AppCompatActivity {
     }
 
     public void onDestroy() {
+
         super.onDestroy();
     }
 
