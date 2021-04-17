@@ -1,4 +1,4 @@
-package com.example.scanbarcode.ConfigFile;
+package com.lyg.factorysmartsystem.ConfigFile;
 
 import android.content.Context;
 import android.content.Intent;

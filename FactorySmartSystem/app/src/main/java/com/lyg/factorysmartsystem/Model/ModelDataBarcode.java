@@ -1,4 +1,4 @@
-package com.example.scanbarcode.Model;
+package com.lyg.factorysmartsystem.Model;
 
 public class ModelDataBarcode {
     private String BarcodeNo;

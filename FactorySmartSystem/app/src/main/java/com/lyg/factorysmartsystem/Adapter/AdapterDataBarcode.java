@@ -1,4 +1,4 @@
-package com.example.scanbarcode.Adapter;
+package com.lyg.factorysmartsystem.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.scanbarcode.Model.ModelDataBarcode;
+import com.lyg.factorysmartsystem.Model.ModelDataBarcode;
 import com.lyg.factorysmartsystem.R;
 
 

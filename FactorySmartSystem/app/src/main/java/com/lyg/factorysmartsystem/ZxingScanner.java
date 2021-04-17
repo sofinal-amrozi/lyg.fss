@@ -17,7 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.scanbarcode.ConfigFile.ServerApi;
+import com.lyg.factorysmartsystem.ConfigFile.ServerApi;
 import com.google.zxing.Result;
 
 import org.json.JSONException;

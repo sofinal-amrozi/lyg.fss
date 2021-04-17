@@ -22,14 +22,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.scanbarcode.Adapter.AdapterDataBarcode;
-import com.example.scanbarcode.ConfigFile.ServerApi;
-import com.example.scanbarcode.ConfigFile.authdata;
-import com.example.scanbarcode.Model.ModelDataAdm;
-import com.example.scanbarcode.Model.ModelDataBarcode;
-import com.example.scanbarcode.Model.ModelInOut;
-import com.example.scanbarcode.Model.ModelLine;
-import com.example.scanbarcode.Model.ModelStation;
+import com.lyg.factorysmartsystem.Adapter.AdapterDataBarcode;
+import com.lyg.factorysmartsystem.ConfigFile.ServerApi;
+import com.lyg.factorysmartsystem.ConfigFile.authdata;
+import com.lyg.factorysmartsystem.Model.ModelDataAdm;
+import com.lyg.factorysmartsystem.Model.ModelDataBarcode;
+import com.lyg.factorysmartsystem.Model.ModelInOut;
+import com.lyg.factorysmartsystem.Model.ModelLine;
+import com.lyg.factorysmartsystem.Model.ModelStation;
 
 
 import org.json.JSONArray;
@@ -43,6 +43,7 @@ public class BarcodeScanner extends AppCompatActivity {
     Spinner dataAdm, dataLine, dataStation, dataInOut;
     ImageView scanBarcode, Exit;
     RequestQueue requestQueue;
+
     authdata authdataa;
 
     List<ModelDataAdm> DataAdmList;
@@ -236,7 +237,7 @@ public class BarcodeScanner extends AppCompatActivity {
         dataLine = findViewById(R.id.line_no);
         dataStation = findViewById(R.id.station);
         dataInOut = findViewById(R.id.in_out);
-        scanBarcode = findViewById(R.id.img_scan);
+        scanBarcode = findViewById(R.id.ivScanBarcode);
         Exit = findViewById(R.id.ivBackOnBarcode);
     }
 
