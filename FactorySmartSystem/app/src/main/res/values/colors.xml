@@ -10,6 +10,9 @@
     <color name="blue_fss">#1A75BB</color>
     <color name="dark_green">#40C9C4</color>
 
+    // Background
+    <color name="light_grey">#f5f5f5</color>
+
     // Gradasi Warna ke-1
     <color name="gradient_m1">#88DEB0</color>
     <color name="gradient_m2">#69C6AF</color>

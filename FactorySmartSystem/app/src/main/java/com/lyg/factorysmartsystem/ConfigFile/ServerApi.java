@@ -1,4 +1,4 @@
-package com.example.scanbarcode.ConfigFile;
+package com.lyg.factorysmartsystem.ConfigFile;
 
 public class ServerApi {
     public static final String IPServer="http://192.168.1.100/ScanBarcode/RestApi/api/";
