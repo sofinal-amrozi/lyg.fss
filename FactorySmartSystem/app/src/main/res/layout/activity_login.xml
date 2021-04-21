@@ -72,16 +72,14 @@
         android:drawableStart="@drawable/ic_email"
         android:drawablePadding="8dp"
         android:elevation="2dp"
-        android:fontFamily="@font/roboto_bold"
+        android:fontFamily="@font/roboto_regular"
         android:hint="Email"
         android:maxLength="255"
         android:inputType="textEmailAddress"
         android:paddingStart="18dp"
         android:paddingEnd="18dp"
         android:textColorHint="#BFBFBF"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintTop_toBottomOf="@+id/LoginTitleOnLogin"/>
 
 
@@ -96,14 +94,13 @@
         android:drawableStart="@drawable/ic_key"
         android:drawablePadding="8dp"
         android:elevation="2dp"
-        android:fontFamily="@font/roboto_bold"
+        android:fontFamily="@font/roboto_regular"
         android:hint="Password"
         android:maxLength="255"
         android:inputType="textPassword"
         android:paddingStart="18dp"
         android:paddingEnd="18dp"
         android:textColorHint="#BFBFBF"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/EmailText"/>
@@ -125,7 +122,7 @@
         android:id="@+id/SignInTitleOnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="100dp"
         android:fontFamily="@font/opensans_semibold"
         android:text="Sign in"
@@ -143,7 +140,7 @@
         android:text="Sign in"
         android:textColor="@color/black"
         android:textSize="40sp"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ForgotTitleOnLogin"/>

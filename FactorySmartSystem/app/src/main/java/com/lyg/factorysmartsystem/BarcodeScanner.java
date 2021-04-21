@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -35,13 +36,15 @@ import com.lyg.factorysmartsystem.Model.ModelStation;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class BarcodeScanner extends AppCompatActivity {
     Spinner dataAdm, dataLine, dataStation, dataInOut;
-    ImageView scanBarcode, Exit;
+    ImageView scanBarcode, Exit, CreateNewScan;
     RequestQueue requestQueue;
 
     authdata authdataa;
@@ -60,7 +63,18 @@ public class BarcodeScanner extends AppCompatActivity {
     AdapterDataBarcode adapter;
     List<ModelDataBarcode> item;
 
-    String admData, lineData, stationData, inoutData;
+    String admData;
+    String lineData;
+    String stationData;
+    String inoutData;
+    String recordCount;
+    String tSessionId;
+    String tBarcodeType;
+
+    TextView resultCount;
+    Integer recCount;
+
+    Spinner sAdmName, sLineNo, sStation, sInOut;
 
     int StatusCheck = 0;
     @Override
@@ -69,12 +83,14 @@ public class BarcodeScanner extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barcode_scanner);
         getSupportActionBar().hide();
+        StatusCheck = 0;
+        tSessionId = "";
         init();
         loadData();
 
 
 
-        //        Parsing data
+        //Parsing data
 
         /*Intent intent = getIntent();
         admDataEx = intent.getStringExtra("Extent_admData");
@@ -155,9 +171,44 @@ public class BarcodeScanner extends AppCompatActivity {
             }
         });
 
+        CreateNewScan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                StatusCheck = 0;
+                sAdmName.setEnabled(true);
+                sLineNo.setEnabled(true);
+                sStation.setEnabled(true);
+                sInOut.setEnabled(true);
+
+                sAdmName.setSelection(0);
+                sLineNo.setSelection(0);
+                sStation.setSelection(0);
+                sInOut.setSelection(0);
+
+                tSessionId = "";
+                tSessionId = getRandomString(10);
+                //Toast.makeText(BarcodeScanner.this, "New SessionId has been created!", Toast.LENGTH_SHORT).show();
+
+
+                TextView mTextView = (TextView) findViewById(R.id.text_resultbarcode);
+                mTextView.setText("0 Barcode");
+
+                loadData();
+
+            }
+        });
+
+
         scanBarcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if (tSessionId == "") {
+                    tSessionId = getRandomString(10);
+                }
+
+
                 if (dataAdm.getSelectedItem().toString().trim().equals("")) {
                     Toast.makeText(BarcodeScanner.this, "Select Admin !", Toast.LENGTH_SHORT).show();
                 }
@@ -171,12 +222,15 @@ public class BarcodeScanner extends AppCompatActivity {
                     Toast.makeText(BarcodeScanner.this, "Select In / Out !", Toast.LENGTH_SHORT).show();
                 } else {
 
-
+                    StatusCheck = 1;
+                    Toast.makeText(BarcodeScanner.this, tSessionId, Toast.LENGTH_SHORT).show();
                     Intent input = new Intent(BarcodeScanner.this, ZxingScanner.class);
                     input.putExtra("intent_admData", admData);
                     input.putExtra("intent_lineData", lineData);
                     input.putExtra("intent_stationData", stationData);
                     input.putExtra("intent_inoutData", inoutData);
+                    input.putExtra("intent_SessionId", tSessionId);
+                    // input.putExtra("intent_BarcodeType", tBarcodeType);
                     startActivity(input);
 
                     //finish();
@@ -217,6 +271,8 @@ public class BarcodeScanner extends AppCompatActivity {
 
 
         });
+
+
     }
 
     public void onDestroy() {
@@ -226,6 +282,20 @@ public class BarcodeScanner extends AppCompatActivity {
 
     public void onResume() {
         super.onResume();
+
+        if (StatusCheck == 0) {
+            sAdmName.setEnabled(true);
+            sLineNo.setEnabled(true);
+            sStation.setEnabled(true);
+            sInOut.setEnabled(true);
+        } else
+        {
+            sAdmName.setEnabled(false);
+            sLineNo.setEnabled(false);
+            sStation.setEnabled(false);
+            sInOut.setEnabled(false);
+        }
+
         loadData();
     }
 
@@ -238,7 +308,17 @@ public class BarcodeScanner extends AppCompatActivity {
         dataStation = findViewById(R.id.station);
         dataInOut = findViewById(R.id.in_out);
         scanBarcode = findViewById(R.id.ivScanBarcode);
+        CreateNewScan = findViewById(R.id.ivNewScan);
         Exit = findViewById(R.id.ivBackOnBarcode);
+        resultCount = findViewById(R.id.text_resultbarcode);
+        recCount = 0;
+
+        // Spinner
+        sAdmName = findViewById(R.id.adm_name);
+        sLineNo = findViewById(R.id.line_no);
+        sStation = findViewById(R.id.station);
+        sInOut = findViewById(R.id.in_out);
+
     }
 
     public void loadAdm(){
@@ -269,7 +349,7 @@ public class BarcodeScanner extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(BarcodeScanner.this, "No Data !", Toast.LENGTH_LONG).show();
+                Toast.makeText(BarcodeScanner.this, "No Data Adm !", Toast.LENGTH_LONG).show();
             }
         });
         requestQueue.add(stringRequest);
@@ -298,7 +378,7 @@ public class BarcodeScanner extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(BarcodeScanner.this, "No Data !", Toast.LENGTH_LONG).show();
+                Toast.makeText(BarcodeScanner.this, "No Data Line !", Toast.LENGTH_LONG).show();
             }
         });
         requestQueue.add(stringRequest2);
@@ -327,7 +407,7 @@ public class BarcodeScanner extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(BarcodeScanner.this, "No Data !", Toast.LENGTH_LONG).show();
+                Toast.makeText(BarcodeScanner.this, "No Data Station !", Toast.LENGTH_LONG).show();
             }
         });
         requestQueue.add(stringRequest3);
@@ -356,15 +436,30 @@ public class BarcodeScanner extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(BarcodeScanner.this, "No Data !", Toast.LENGTH_LONG).show();
+                Toast.makeText(BarcodeScanner.this, "No Data In/Out !", Toast.LENGTH_LONG).show();
             }
         });
         requestQueue.add(stringRequest4);
     }
 
+    public static String getRandomString(int i) {
+        final String characters = "abcdefghijklmnopqrstuvwxyz0123456789";
+        StringBuilder result = new StringBuilder();
+        while (i > 0) {
+            Random rand = new Random();
+            result.append(characters.charAt(rand.nextInt(characters.length())));
+            i--;
+        }
+        return result.toString();
+
+
+    }
+
+
+
     // Load data hasil scan
     public void loadData(){
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, ServerApi.URL_DATASCAN, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, ServerApi.URL_DATASCAN + tSessionId, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -377,23 +472,59 @@ public class BarcodeScanner extends AppCompatActivity {
                         JSONObject send_data_to_api = data.getJSONObject(i);
                         playerModel.setBarcodeNo(send_data_to_api.getString("BarcodeNo"));
                         playerModel.setScanDate(send_data_to_api.getString("ScanDate"));
-
+                        playerModel.setBarcodeType(send_data_to_api.getString("BarcodeType"));
+                        playerModel.setBarcodeTypeCode(send_data_to_api.getString("BarcodeTypeCode"));
                         item.add(playerModel);
+
                     }
+
+//                    for (int i = 0; i < data.length(); i++)
+//                    {
+//                        tBarcodeType = "";
+//                        tBarcodeType = data.getJSONObject(i).getString("BarcodeType");
+//                        Toast.makeText(BarcodeScanner.this, tBarcodeType, Toast.LENGTH_SHORT).show();
+//                    }
+
+                    //Toast.makeText(BarcodeScanner.this, String.valueOf(item.size()), Toast.LENGTH_SHORT).show();
+                    TextView mTextView = (TextView) findViewById(R.id.text_resultbarcode);
+                    recordCount = String.valueOf(item.size()) + " Barcode";
+                    mTextView.setText(recordCount);
                     adapter = new AdapterDataBarcode(BarcodeScanner.this, item);
                     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(BarcodeScanner.this);
                     recyclerView.setLayoutManager(layoutManager);
                     recyclerView.setAdapter(adapter);
+
                 } catch (JSONException e){
-                    Toast.makeText(BarcodeScanner.this, "Codingan Error: Load Data !", Toast.LENGTH_SHORT).show();
+                    TextView mTextView = (TextView) findViewById(R.id.text_resultbarcode);
+                    mTextView.setText("0 Barcode");
+                    Toast.makeText(BarcodeScanner.this, "New SessionId has been created!", Toast.LENGTH_SHORT).show();
+
+                    item = new ArrayList<>();
+                    adapter = new AdapterDataBarcode(BarcodeScanner.this, item);
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(BarcodeScanner.this);
+                    recyclerView.setLayoutManager(layoutManager);
+                    recyclerView.setAdapter(adapter);
+                    recyclerView.setAdapter(null);
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                TextView mTextView = (TextView) findViewById(R.id.text_resultbarcode);
+                mTextView.setText("0 Barcode");
                 Toast.makeText(BarcodeScanner.this, "No Data !", Toast.LENGTH_LONG).show();
+
+                item = new ArrayList<>();
+                adapter = new AdapterDataBarcode(BarcodeScanner.this, item);
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(BarcodeScanner.this);
+                recyclerView.setLayoutManager(layoutManager);
+                recyclerView.setAdapter(adapter);
+                recyclerView.setAdapter(null);
+
             }
         });
         requestQueue.add(stringRequest);
+        //TextView mTextView = (TextView) findViewById(R.id.text_resultbarcode);
+        //mTextView.setText(getString(adapter.getItemCount()));
     }
 }

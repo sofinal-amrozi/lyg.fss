@@ -30,10 +30,11 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class ZxingScanner extends AppCompatActivity implements ZXingScannerView.ResultHandler{
     ZXingScannerView mScannerView;
-    String Barcode;
+    String Barcode, BarcodeType, BarcodeTypeCode;
+    //Integer BarTypeCode;
     Boolean doubleBackToExit;
 
-    String admData, lineData, stationData, inoutData;
+    String admData, lineData, stationData, inoutData, tSessionId;
     String admDataEx, lineDataEx, stationDataEx, inoutDataEx;
     JSONObject jsonObject;
 
@@ -52,11 +53,15 @@ public class ZxingScanner extends AppCompatActivity implements ZXingScannerView.
         lineData = intent.getStringExtra("intent_lineData");
         stationData = intent.getStringExtra("intent_stationData");
         inoutData = intent.getStringExtra("intent_inoutData");
+        tSessionId= intent.getStringExtra("intent_SessionId");
+
 
         Log.e("Hasil", admData);
         Log.e("Hasil", lineData);
         Log.e("Hasil", stationData);
         Log.e("Hasil", inoutData);
+        Log.e("Hasil", tSessionId);
+
     }
 
     @Override
@@ -75,9 +80,19 @@ public class ZxingScanner extends AppCompatActivity implements ZXingScannerView.
     @Override
     public void handleResult(Result rawResult) {
         Log.v("TAG", rawResult.getText()); // Prints scan results
-        Log.v("TAG", rawResult.getBarcodeFormat().toString());
+        //Log.v("TAG", rawResult.getBarcodeFormat().toString());
         Barcode = rawResult.getText(); //  + rawResult.getBarcodeFormat().toString()
+        BarcodeType = rawResult.getBarcodeFormat().toString();
         Log.e("barcode", Barcode);
+        Log.e("BarcodeType", BarcodeType);
+
+        if (BarcodeType == "QR_CODE") {
+            BarcodeTypeCode = "1";
+        } else {
+            BarcodeTypeCode = "0";
+        }
+        Log.e("BarcodeTypeCode", BarcodeTypeCode);
+
         inputData();
 
         /*// Build Message
@@ -150,7 +165,7 @@ public class ZxingScanner extends AppCompatActivity implements ZXingScannerView.
                     String pesan = jsonObject.getString("pesan");
                     //String message = jsonObject.getString("message");
                     Toast.makeText(ZxingScanner.this, pesan, Toast.LENGTH_SHORT).show();
-                    //Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(ZxingScanner.this, BarcodeType, Toast.LENGTH_SHORT).show();
 
                     //Toast.makeText(MainActivity.this, "Successfully Save!", Toast.LENGTH_LONG).show();
 
@@ -183,6 +198,9 @@ public class ZxingScanner extends AppCompatActivity implements ZXingScannerView.
                 params.put("Station_Name", stationData);
                 params.put("IO_Name", inoutData);
                 params.put("BarcodeNo", Barcode);
+                params.put("SessionId", tSessionId);
+                params.put("BarcodeType", BarcodeType);
+                params.put("BarcodeTypeCode", BarcodeTypeCode);
                 return params;
             }
         };
