@@ -48,4 +48,8 @@
     <color name="gradient_y07">#1F1A24</color>
     <color name="gradient_y08">#000000</color>
 
+    <color name="gradient_redlight">#870000</color>
+    <color name="gradient_reddark">#390704</color>
+    <color name="red_text">#A50000</color>
+
 </resources>

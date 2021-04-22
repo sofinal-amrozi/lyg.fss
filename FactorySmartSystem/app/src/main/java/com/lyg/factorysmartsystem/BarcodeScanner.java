@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,7 +45,7 @@ import java.util.Random;
 
 public class BarcodeScanner extends AppCompatActivity {
     Spinner dataAdm, dataLine, dataStation, dataInOut;
-    ImageView scanBarcode, Exit, CreateNewScan;
+    ImageView Exit;
     RequestQueue requestQueue;
 
     authdata authdataa;
@@ -75,6 +76,8 @@ public class BarcodeScanner extends AppCompatActivity {
     Integer recCount;
 
     Spinner sAdmName, sLineNo, sStation, sInOut;
+
+    LinearLayout linearscanbcode, linearNewScan;
 
     int StatusCheck = 0;
     @Override
@@ -171,7 +174,7 @@ public class BarcodeScanner extends AppCompatActivity {
             }
         });
 
-        CreateNewScan.setOnClickListener(new View.OnClickListener() {
+        linearNewScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -200,7 +203,7 @@ public class BarcodeScanner extends AppCompatActivity {
         });
 
 
-        scanBarcode.setOnClickListener(new View.OnClickListener() {
+        linearscanbcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -307,8 +310,8 @@ public class BarcodeScanner extends AppCompatActivity {
         dataLine = findViewById(R.id.line_no);
         dataStation = findViewById(R.id.station);
         dataInOut = findViewById(R.id.in_out);
-        scanBarcode = findViewById(R.id.ivScanBarcode);
-        CreateNewScan = findViewById(R.id.ivNewScan);
+        linearscanbcode = findViewById(R.id.linearscanbcode);
+        linearNewScan = findViewById(R.id.linearNewScan);
         Exit = findViewById(R.id.ivBackOnBarcode);
         resultCount = findViewById(R.id.text_resultbarcode);
         recCount = 0;

@@ -26,12 +26,12 @@ public class SplashScreen extends AppCompatActivity {
         fadein = AnimationUtils.loadAnimation(this,R.anim.fade_in);
 
         logo = findViewById(R.id.LogoOnSplash);
-        HeadTitle = findViewById(R.id.HeaderTitleOnSplash);
-        VersionTitle = findViewById(R.id.VersionTitleOnSplash);
+//        HeadTitle = findViewById(R.id.HeaderTitleOnSplash);
+//        VersionTitle = findViewById(R.id.VersionTitleOnSplash);
 
         logo.setAnimation(fadein);
-        HeadTitle.setAnimation(fadein);
-        VersionTitle.setAnimation(fadein);
+//        HeadTitle.setAnimation(fadein);
+//        VersionTitle.setAnimation(fadein);
 
         // Splashscreen method
          new Handler().postDelayed(new Runnable() {
