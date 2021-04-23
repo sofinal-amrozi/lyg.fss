@@ -18,7 +18,7 @@
 
         <ImageView
             android:id="@+id/ivBackOnBarcode"
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:src="@drawable/ic_back"
@@ -29,7 +29,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
             android:fontFamily="@font/calibrib"
             android:text="Barcode Scanner"
             android:textColor="#FF0000"
@@ -171,7 +171,7 @@
             android:layout_marginStart="15dp"
             android:src="@drawable/ico_adm"/>
         <TextView
-            android:layout_width="80dp"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:text="ADM Name"
             android:textColor="@color/gradient_reddark"
@@ -219,11 +219,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="16dp"
-            android:src="@drawable/ico_lineno"/>
+            android:src="@drawable/ico_station"/>
         <TextView
-            android:layout_width="80dp"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
-            android:text="Line No."
+            android:text="Department"
             android:textColor="@color/gradient_reddark"
             android:textSize="14sp"
             android:layout_gravity="center"
@@ -239,7 +239,7 @@
             android:layout_marginEnd="15dp"
             android:layout_marginStart="15dp">
             <Spinner
-                android:id="@+id/line_no"
+                android:id="@+id/station"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"/>
         </androidx.cardview.widget.CardView>
@@ -268,15 +268,17 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="16dp"
-            android:src="@drawable/ico_station"/>
+            android:src="@drawable/ico_lineno"/>
+
         <TextView
-            android:layout_width="80dp"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
-            android:text="Station"
-            android:textColor="@color/gradient_reddark"
-            android:textSize="14sp"
             android:layout_gravity="center"
-            android:layout_marginStart="16dp"/>
+            android:layout_marginStart="16dp"
+            android:text="Line No"
+            android:textColor="@color/gradient_reddark"
+            android:textSize="14sp" />
+
         <androidx.cardview.widget.CardView
             android:id="@+id/cardLayout_station"
             android:layout_width="match_parent"
@@ -288,7 +290,7 @@
             android:layout_marginEnd="15dp"
             android:layout_marginStart="15dp">
             <Spinner
-                android:id="@+id/station"
+                android:id="@+id/line_no"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"/>
         </androidx.cardview.widget.CardView>
@@ -320,7 +322,7 @@
             android:layout_marginStart="14dp"
             android:src="@drawable/ico_inout" />
         <TextView
-            android:layout_width="80dp"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:text="In / Out"
             android:textColor="@color/gradient_reddark"
