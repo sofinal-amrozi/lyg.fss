@@ -7,17 +7,21 @@ import android.content.SharedPreferences;
 public class authdata {
     //    private static authdata mInstance;
     SharedPreferences sharedPreferences;
+    public SharedPreferences.Editor editor;
     public Context mCtx;
 
-    public static final String SHARED_PREF_NAME = "ScanBarcode";
-    private static final String sudahlogin = "n";
-    public SharedPreferences.Editor editor;
-
-    private static final String namaadm = "Adm_Name";
-    private static final String noline = "Line_No";
-    private static final String namastation = "Station_Name";
-    private static final String namaio = "IO_Name";
+    public static final String SHARED_PREF_NAME = "FactorySmartSystem";
     public static final String LOGIN_STATUS = "LOGIN_STATUS";
+
+    private static final String userID = "userID";
+    private static final String userName = "userName";
+    private static final String userNIK = "userNIK";
+    private static final String userMail = "userMail";
+    private static final String token = "token";
+    private static final String CreateBy = "CreateBy";
+    private static final String CreateDate = "CreateDate";
+    private static final String LastModifyBy = "LastModifyBy";
+    private static final String LastModifyDate = "LastModifyDate";
 
 
     public authdata(Context context) {
@@ -26,16 +30,21 @@ public class authdata {
         editor = sharedPreferences.edit();
     }
 
-    public void setdatauser(String xnama_adm, String xno_line, String xnama_station, String xnama_io) {
-//        sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-//        editor = sharedPreferences.edit();
-
+    public void setdatauser(String xid_user, String xnama_user, String xnik_user,
+                            String xmail_user, String xtoken_user,
+                            String xcreateby, String xcreatedate,
+                            String xlastmodifyby, String xlastmodifydate)
+    {
         editor.putBoolean(LOGIN_STATUS, true);
-        editor.putString(namaadm, xnama_adm);
-        editor.putString(noline, xno_line);
-        editor.putString(namastation, xnama_station);
-        editor.putString(namaio, xnama_io);
-        editor.putString(sudahlogin, "y");
+        editor.putString(userID, xid_user);
+        editor.putString(userName, xnama_user);
+        editor.putString(userNIK, xnik_user);
+        editor.putString(userMail, xmail_user);
+        editor.putString(token, xtoken_user);
+        editor.putString(CreateBy, xcreateby);
+        editor.putString(CreateDate, xcreatedate);
+        editor.putString(LastModifyBy, xlastmodifyby);
+        editor.putString(LastModifyDate, xlastmodifydate);
         editor.apply();
     }
 
@@ -53,40 +62,40 @@ public class authdata {
 //        ((MainActivity) mCtx).finish();
 //    }
 
-    public String getNamaadm() {
-        return sharedPreferences.getString(namaadm, null);
+    public String getUserID() {
+        return sharedPreferences.getString(userID, null);
     }
 
-    public String getNoline() {
-        return sharedPreferences.getString(noline, null);
+    public String getUserName() {
+        return sharedPreferences.getString(userName, null);
     }
 
-    public String getNamastation() {
-        return sharedPreferences.getString(namastation, null);
+    public String getUserNIK() {
+        return sharedPreferences.getString(userNIK, null);
     }
 
-    public String getNamaio() {
-        return sharedPreferences.getString(namaio, null);
+    public String getUserMail() {
+        return sharedPreferences.getString(userMail, null);
     }
 
-    public void setNamaadm(String adm) {
-        editor.putString(namaadm, adm);
-        editor.apply();
+    public String getToken() {
+        return sharedPreferences.getString(token, null);
     }
 
-    public void setNoline(String line) {
-        editor.putString(noline, line);
-        editor.apply();
+    public String getCreateBy() {
+        return sharedPreferences.getString(CreateBy, null);
     }
 
-    public void setNamastation(String station) {
-        editor.putString(namastation, station);
-        editor.apply();
+    public String getCreateDate() {
+        return sharedPreferences.getString(CreateDate, null);
     }
 
-    public void setNamaio(String io) {
-        editor.putString(namaio, io);
-        editor.apply();
+    public String getLastModifyBy() {
+        return sharedPreferences.getString(LastModifyBy, null);
+    }
+
+    public String getLastModifyDate() {
+        return sharedPreferences.getString(LastModifyDate, null);
     }
 
 }

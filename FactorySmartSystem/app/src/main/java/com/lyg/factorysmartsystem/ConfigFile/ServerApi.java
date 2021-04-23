@@ -7,4 +7,5 @@ public class ServerApi {
     public static final String URL_DATASTATION=IPServer+"DataStation";
     public static final String URL_DATAINOUT=IPServer+"DataInOut";
     public static final String URL_DATASCAN=IPServer+"TrnScanBarcode?SessionId=";
+    public static final String URL_LOGIN=IPServer+"Login";
 }
