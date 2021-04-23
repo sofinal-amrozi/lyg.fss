@@ -79,13 +79,13 @@ public class Login extends AppCompatActivity {
     }
 
     public void functionLogin(){
-        if (email.getText().toString().isEmpty()){
-            Toast.makeText(Login.this, "Email cannot be empty!", Toast.LENGTH_SHORT).show();
-        } else if (password.getText().toString().isEmpty()){
-            Toast.makeText(Login.this, "Password cannot be empty!", Toast.LENGTH_SHORT).show();
-        } else if (password.getText().toString().length() < 8) {
-            Toast.makeText(Login.this, "Password cannot be less than 8 characters!", Toast.LENGTH_SHORT).show();
-        }
+//        if (email.getText().toString().isEmpty()){
+//            Toast.makeText(Login.this, "Email cannot be empty!", Toast.LENGTH_SHORT).show();
+//        } else if (password.getText().toString().isEmpty()){
+//            Toast.makeText(Login.this, "Password cannot be empty!", Toast.LENGTH_SHORT).show();
+//        } else if (password.getText().toString().length() < 1) {
+//            Toast.makeText(Login.this, "Password cannot be less than 8 characters!", Toast.LENGTH_SHORT).show();
+//        }
 
         progressDialog.setMessage("Loading...");
         progressDialog.setCancelable(false);

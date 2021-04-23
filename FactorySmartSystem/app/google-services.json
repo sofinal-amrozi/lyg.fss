@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1024401030536",
+    "project_id": "factorysmartsystem",
+    "storage_bucket": "factorysmartsystem.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1024401030536:android:568979ae785fd62e428e3d",
+        "android_client_info": {
+          "package_name": "com.lyg.factorysmartsystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1024401030536-1lnktbfvnf7kunf8p4r8dti5pn9uueml.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRSzGoHEfFLpNzbfYlzYIoZUBMx3azs2g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1024401030536-1lnktbfvnf7kunf8p4r8dti5pn9uueml.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
