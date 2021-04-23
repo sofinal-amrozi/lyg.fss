@@ -35,7 +35,7 @@ import java.util.Map;
 
 public class Login extends AppCompatActivity {
     String token;
-    TextView daftar;
+    TextView daftar, login;
     EditText email, password;
     ImageView ImageSignIn;
     private String valid_email, valid_pwd;
@@ -51,11 +51,11 @@ public class Login extends AppCompatActivity {
         getSupportActionBar().hide();
         init();
         InitilizeMail();
-        InitilizePwd();
+//        InitilizePwd();
 
 //        ----------- build token ---------------
         token = FirebaseInstanceId.getInstance().getToken();
-        Log.e("Token Hp :", token);
+        Log.e("Token Hp ", token);
 //        ----------- build token ---------------
 
         ImageSignIn.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +65,12 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                functionLogin();
+            }
+        });
     }
 
     public void init(){
@@ -75,6 +81,7 @@ public class Login extends AppCompatActivity {
         email = findViewById(R.id.EmailText);
         password = findViewById(R.id.pwdText);
         ImageSignIn = findViewById(R.id.ImageSignInOnLogin);
+        login = findViewById(R.id.SignInTitleOnLogin);
         daftar.setPaintFlags(daftar.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
     }
 
@@ -118,6 +125,7 @@ public class Login extends AppCompatActivity {
                     }
                 } catch (JSONException e) {
                     Toast.makeText(Login.this, "Error !", Toast.LENGTH_SHORT).show();
+                    Log.e("onResponse: ", e.toString());
                 }
             }
         }, new Response.ErrorListener() {
@@ -134,6 +142,8 @@ public class Login extends AppCompatActivity {
                 params.put("userMail", email.getText().toString().trim());
                 params.put("userPassword", password.getText().toString().trim());
                 params.put("token", token);
+                Log.e("getParams: ", email.getText().toString().trim());
+                Log.e("getParams: ", password.getText().toString().trim());
                 return params;
             }
         };
